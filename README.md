@@ -14,7 +14,6 @@ Sebuah proyek pembelajaran yang membangun sistem Point of Sales (POS) berbasis w
 - [Struktur Proyek](#struktur-proyek)
 - [Penggunaan](#penggunaan)
 - [Kontribusi](#kontribusi)
-- [Lisensi](#lisensi)
 
 ---
 
@@ -100,12 +99,6 @@ Langkah-langkah untuk berkontribusi:
    git push origin fitur-anda
    ```
 5. Buat pull request.
-
----
-
-## 📄 Lisensi
-
-Proyek ini menggunakan lisensi [MIT](LICENSE).
 
 ---
 
