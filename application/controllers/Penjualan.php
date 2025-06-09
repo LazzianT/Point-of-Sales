@@ -150,5 +150,27 @@ class Penjualan extends CI_Controller
 
         echo json_encode(array('res' => 'sukses', 'kembalian' => $kembalian));
     }
+    public function laporan(){
+  
+        $data['judul'] = 'Warung';
+
+        $this->load->model('penjualanModel');
+        $data['listPenjualan'] = $this->penjualanModel->listPenjualan();
+
+        $this->load->view('Template/header', $data);
+        $this->load->view('Template/sidebar', $data);
+        $this->load->view('Penjualan/laporan', $data);
+        $this->load->view('Template/footer');
+          
+    }
+
+    public function getPenjualanDetail(){
+        $idPenjualan = $this->input->get('idPenjualan');
+         $this->load->model('penjualanModel');
+         $data['detailPenjualan'] = $this->penjualanModel->detailPenjualan($idPenjualan);
+
+         echo json_encode(array('response' => $data['detailPenjualan']));
+         
+    }
 }
 ?>

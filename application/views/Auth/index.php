@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,24 +15,24 @@
             display: flex;
             align-items: center;
         }
-        
+
         .hero-section {
             text-align: center;
             padding: 2rem;
         }
-        
+
         .logo {
             font-size: 3rem;
             font-weight: bold;
             margin-bottom: 1rem;
         }
-        
+
         .tagline {
             font-size: 1.5rem;
             margin-bottom: 2rem;
             opacity: 0.9;
         }
-        
+
         .btn-primary {
             background-color: #4a6bff;
             border-color: #4a6bff;
@@ -39,32 +40,32 @@
             font-size: 1.1rem;
             font-weight: 500;
         }
-        
+
         .btn-primary:hover {
             background-color: #3a5bef;
             border-color: #3a5bef;
         }
-        
+
         .modal-content {
             border-radius: 15px;
             border: none;
         }
-        
+
         .modal-header {
             border-bottom: none;
             padding-bottom: 0;
         }
-        
+
         .modal-title {
             font-weight: bold;
             color: #1e3c72;
         }
-        
+
         .form-control {
             padding: 0.75rem 1rem;
             margin-bottom: 1rem;
         }
-        
+
         .login-btn {
             width: 100%;
             padding: 0.75rem;
@@ -73,6 +74,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="row justify-content-center">
@@ -106,10 +108,12 @@
                 <div class="modal-body">
                     <form method="post" action="" id="loginForm">
                         <div class="mb-3">
-                            <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
+                            <input type="text" class="form-control" name="username" id="username" placeholder="Username"
+                                required>
                         </div>
                         <div class="mb-3">
-                            <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+                            <input type="password" class="form-control" name="password" id="password"
+                                placeholder="Password" required>
                         </div>
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-primary login-btn">Login</button>
@@ -126,40 +130,48 @@
         </div>
     </div>
     <!-- Jquery -->
-     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <!-- Bootstrap JS and Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Sweet Alert 2 -->
-     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
 
     <script>
-    $('#loginForm').on('submit', function(e){
-        e.preventDefault();
-        console.log('berhasil');
+        $('#loginForm').on('submit', function (e) {
+            e.preventDefault();
 
-        var data = $(this).serialize()
-        
-        $.ajax({
-            method:'POST',
-            url:'<?= base_url("Auth/loginProses")?>',
-            dataType:'JSON',
-            data:data,
-            success: function(response){
-                if( response.response === 1){
+            var data = $(this).serialize()
+
+            $.ajax({
+                method: 'POST',
+                url: '<?= base_url("Auth/loginProses") ?>',
+                dataType: 'JSON',
+                data: data,
+                success: function (response) {
+                    console.log(response)
+                    if (response.response === 1) {
+                        Swal.fire({
+                            title: 'Berhasil Masuk',
+                            icon: 'success'
+                        })
+
+                        setTimeout(function () {
+                            window.location.href = '<?= base_url('Dashboard/index') ?>'
+                        }, 2000)
+                    }
+                },
+                error: function (xhr, status, error) {
                     Swal.fire({
-                        title:'Berhasil Masuk',
-                        icon:'success'
+                        title:'Data Login Tidak ada',
+                        icon:'error'
                     })
-
-                    setTimeout(function(){
-                        window.location.href='<?= base_url('Dashboard/index')?>'
-                    },2000)
                 }
-            }
+            })
         })
-    })
     </script>
 </body>
+
 </html>
